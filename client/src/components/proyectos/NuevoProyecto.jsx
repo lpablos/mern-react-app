@@ -1,6 +1,22 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useState } from 'react'
 
 const NuevoProyecto = () => {
+    const [proyecto, setProyecto] = useState({
+        nombre:''
+    })
+
+    const {nombre} = proyecto
+
+    const onChangeProyecto = e => {
+        setProyecto({
+            ...proyecto,
+            [e.target.name] : e.target.value
+        })
+    }
+    const onSubmit = e =>{
+        e.preventDefault();
+        alert("Nuevo proyecto")
+    }
     return (
 
         <Fragment>
@@ -10,13 +26,17 @@ const NuevoProyecto = () => {
             >
                 Nuevo Proyecto
             </button>
-            <form action="" className="formulario-nuevo-proyecto">
+            <form 
+                onSubmit={onSubmit}
+                className="formulario-nuevo-proyecto">
                 <input 
                     type="text" 
-                    name="" 
+                    name="nombre" 
                     id="" 
                     className="input-text"
-                    placeholder="Nombre del Proyecto"/>
+                    placeholder="Nombre del Proyecto"
+                    onChange={onChangeProyecto}
+                    value={nombre}/>
                 <input 
                     type="submit" 
                     value="Agregar Proyecto" 
