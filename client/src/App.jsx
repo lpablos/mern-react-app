@@ -10,23 +10,28 @@ import {
   // Link
 } from "react-router-dom";
 
+import ProyectoState from './context/proyectos/ProyectoState';
+
 
 
 const App = () => {
   return (
-    <Router>    
-      <Switch>
-          <Route exact path="/">
-            <Login />
-          </Route>
-          <Route exact path="/nueva-cuenta">
-            <NuevaCuenta />
-          </Route>
-          <Route exact path="/proyectos">
-            <Proyectos />
-          </Route>
-        </Switch>
-    </Router>
+      <ProyectoState>
+        <Router>    
+          <Switch>
+              <Route exact path="/">
+                <Login />
+              </Route>
+              <Route exact path="/nueva-cuenta">
+                <NuevaCuenta />
+              </Route>
+              <Route exact path="/proyectos">
+                <Proyectos />
+              </Route>
+            </Switch>
+        </Router>
+      </ProyectoState>
+    
   )
 }
 
