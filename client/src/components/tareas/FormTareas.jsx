@@ -1,6 +1,14 @@
-import React from 'react'
+import React, {useContext} from 'react'
+import ProyectoContext from '../../context/proyectos/ProyectoContext'
 
 const FormTareas = () => {
+    const proyectosContext = useContext(ProyectoContext)
+    const {proyecto} = proyectosContext
+    // Si no exite un proyecto que no pinte el formulario
+    if(!proyecto) return null
+
+    const [proyectoActual] = proyecto
+
     return (
         <div className="formulario">
             <form action="">

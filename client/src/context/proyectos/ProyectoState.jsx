@@ -7,7 +7,8 @@ import {
     OBTENER_PROYECTOS,
     AGREGAR_PROYECTO,
     VALIDAR_FORMULARIO,
-    PROYECTO_ACTUAL
+    PROYECTO_ACTUAL,
+    ELIMINAR_PROYECTO
 } from "../../types"
 
 
@@ -70,6 +71,15 @@ const ProyectoState = props => {
 
     }
 
+    const eliminarProyecto = proyectoId =>{
+        dispatch({
+            type: ELIMINAR_PROYECTO,
+            payload: proyectoId
+        })
+    }
+
+    // Eliminar un proyecto
+
     return(
         <ProyectoContext.Provider
             value = {{
@@ -81,7 +91,8 @@ const ProyectoState = props => {
                 obtenerProyectos,
                 agregarProyecto,
                 mostrarError,
-                proyectoACtual
+                proyectoACtual,
+                eliminarProyecto
             }}
         >
             {props.children}

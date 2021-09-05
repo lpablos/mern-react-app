@@ -10,7 +10,7 @@ const Listado = () => {
         obtenerProyectos()
     }, [])
     // Verificacion en caso existir listado
-    if(proyectos.length === 0) return null
+    if(proyectos.length === 0) return <p>No existen proyectos, crea uno</p>
 
     return (
         <ul className="listado-proyectos"> 
