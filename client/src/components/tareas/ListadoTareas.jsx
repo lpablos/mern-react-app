@@ -13,24 +13,7 @@ const ListadoTareas = () => {
     // De lo contrario continua  con el despliege de la seccion
     const [proyectoActual] = proyecto
 
-    const tareasProyecto = [
-        {
-            nombre: 'Elegir Plataforma',
-            estado: true
-        },
-        {
-            nombre: 'Elegir Colores',
-            estado: false
-        },
-        {
-            nombre: 'Elegir Plataformas de Pago',
-            estado: true
-        },
-        {
-            nombre: 'Elegir Hosting',
-            estado: false
-        },
-    ]
+    const tareasProyecto = []
 
     const onClickEliminar = () =>{
         eliminarProyecto(proyectoActual.id)

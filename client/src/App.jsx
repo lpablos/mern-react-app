@@ -11,25 +11,28 @@ import {
 } from "react-router-dom";
 
 import ProyectoState from './context/proyectos/ProyectoState';
+import TareaState from './context/tareas/TareaState';
 
 
 
 const App = () => {
   return (
       <ProyectoState>
-        <Router>    
-          <Switch>
-              <Route exact path="/">
-                <Login />
-              </Route>
-              <Route exact path="/nueva-cuenta">
-                <NuevaCuenta />
-              </Route>
-              <Route exact path="/proyectos">
-                <Proyectos />
-              </Route>
-            </Switch>
-        </Router>
+        <TareaState>
+          <Router>    
+            <Switch>
+                <Route exact path="/">
+                  <Login />
+                </Route>
+                <Route exact path="/nueva-cuenta">
+                  <NuevaCuenta />
+                </Route>
+                <Route exact path="/proyectos">
+                  <Proyectos />
+                </Route>
+              </Switch>
+          </Router>
+        </TareaState>
       </ProyectoState>
     
   )
