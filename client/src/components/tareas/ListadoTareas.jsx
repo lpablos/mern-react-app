@@ -1,11 +1,15 @@
 import React, { Fragment, useContext } from 'react'
 import Tarea from './Tarea'
 import ProyectoContext from '../../context/proyectos/ProyectoContext'
+import TareaContext from '../../context/tareas/TareaContext'
 
 const ListadoTareas = () => {
     
     const proyectosContext = useContext(ProyectoContext)
     const {proyecto, eliminarProyecto } = proyectosContext
+
+    const tareasContext = useContext(TareaContext)
+    const {tareasproyecto} = tareasContext
     // Si no existe un proyecto selecionado manda este aviso
     if(!proyecto) return <h2>Seleciona un proyecto</h2>
 
@@ -13,7 +17,7 @@ const ListadoTareas = () => {
     // De lo contrario continua  con el despliege de la seccion
     const [proyectoActual] = proyecto
 
-    const tareasProyecto = []
+    
 
     const onClickEliminar = () =>{
         eliminarProyecto(proyectoActual.id)
@@ -23,9 +27,9 @@ const ListadoTareas = () => {
             <h2>Proyectos : {proyectoActual.nombre}</h2>
             <ul className="listado-tareas">
                 {
-                    tareasProyecto.length === 0 
+                    tareasproyecto.length === 0 
                     ?(<li className="tarea"><p>No hay tareas</p></li>)
-                    :tareasProyecto.map(tarea=>(
+                    :tareasproyecto.map(tarea=>(
                         <Tarea 
                             tarea={tarea}
                         />
