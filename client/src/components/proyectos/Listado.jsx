@@ -6,9 +6,10 @@ const Listado = () => {
     const proyectosContext = useContext(ProyectoContext)
     const {proyectos, obtenerProyectos} = proyectosContext
 
-    useEffect(() => {
+    useEffect(() => {        
         obtenerProyectos()
     }, [])
+
     // Verificacion en caso existir listado
     if(proyectos.length === 0) return <p>No existen proyectos, crea uno</p>
 
@@ -16,7 +17,7 @@ const Listado = () => {
         <ul className="listado-proyectos"> 
             { proyectos.map( proyecto =>(
                 <Proyecto
-                    key={proyectos.id}
+                    key={proyecto.id}
                     proyecto={proyecto}
                 />
             ))}           
