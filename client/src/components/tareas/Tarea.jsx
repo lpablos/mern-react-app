@@ -4,7 +4,7 @@ import ProyectoContext from '../../context/proyectos/ProyectoContext'
 
 const Tarea = ({tarea}) => {
     const tareasContext = useContext(TareaContext)
-    const { eliminarTarea, obtenerTareas } = tareasContext
+    const { eliminarTarea, obtenerTareas, cambiarEstadoTarea } = tareasContext
 
     const proyectosContext = useContext(ProyectoContext)
     const { proyecto } = proyectosContext
@@ -16,18 +16,43 @@ const Tarea = ({tarea}) => {
         obtenerTareas(proyectoActual.id)
     }
 
+    const cambiarEstado = tarea =>{
+        tarea.estado = (tarea.estado)? false : true 
+        cambiarEstadoTarea(tarea)
+    }
+
     return (
         <li className="tarea sombra">
             <p>{tarea.nombre}</p>
             <div className="estado">
                 {
                     tarea.estado
-                    ?(<button type="button" className="completo">Completo</button>) 
-                    :(<button type="button" className="incompleto">Incompleto</button>) 
+                    ?(
+                        <button 
+                            type="button" 
+                            className="completo"
+                            onClick={()=>cambiarEstado(tarea)}
+                        >
+                            Completo
+                        </button>
+                    ) 
+                    :(
+                        <button 
+                            type="button" 
+                            className="incompleto"
+                            onClick={()=>cambiarEstado(tarea)}
+                        >
+                            Incompleto
+                        </button>
+                    ) 
                 }
             </div>
             <div className="acciones">
-                <button className="btn btn-primario">Editar</button>
+                <button 
+                    className="btn btn-primario"                    
+                >
+                        Editar
+                </button>
                 <button 
                     className="btn btn-secundario"
                     onClick={()=>tareaEliminar(tarea.id)}>
