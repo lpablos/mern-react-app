@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react'
+import React, {useContext, useState, useEffect} from 'react'
 import ProyectoContext from '../../context/proyectos/ProyectoContext'
 import TareaContext from '../../context/tareas/TareaContext'
 
@@ -7,11 +7,27 @@ const FormTareas = () => {
     const {proyecto} = proyectosContext
 
     const tareasContext = useContext(TareaContext)
-    const { agregarTarea, validaTarea, errorTarea, obtenerTareas } = tareasContext
+    const { 
+        tareaselecionada, 
+        errorTarea,
+        agregarTarea, 
+        validaTarea,  
+        obtenerTareas,
+        actualizarTarea,
+        limpiarTarea 
+    } = tareasContext
 
     const [tarea, setTarea] = useState({
         nombre : ''
     })
+
+     // Decta si hay una tarea selecionada
+     useEffect(() => {
+        (tareaselecionada !== null )
+            ?setTarea(tareaselecionada)
+            :setTarea({nombre:''})
+        
+    }, [tareaselecionada])
     // Si no exite un proyecto que no pinte el formulario
     if(!proyecto) return null
     // objecto del proyecto actual
@@ -35,18 +51,25 @@ const FormTareas = () => {
             validaTarea()
             return
         }
-        // Pasar la nueva tarea
-        tarea.proyectoId = proyectoActual.id
-        tarea.estado = true
-        agregarTarea(tarea)
+
+        // Verificar si es edicion o nueva tarea
+        if(tareaselecionada === null){
+            // Pasar la nueva tarea
+            tarea.proyectoId = proyectoActual.id
+            tarea.estado = true
+            agregarTarea(tarea)
+        }else{
+            // actualizar tarea
+            actualizarTarea(tarea)
+            limpiarTarea()            
+        }
+        
         // Actualizar el listado de las tareas del proyecto actual
         // Nota: es posible por que el evento depende del state 
         // aun que no se parte del mismo componente
         obtenerTareas(proyectoActual.id)
         // Reiniciar el form
         setTarea({nombre: ''})
-
-
     }
 
     return (
@@ -68,7 +91,11 @@ const FormTareas = () => {
                     <input 
                         type="submit" 
                         className="btn btn-primario btn-submit btn-block"
-                        value="Agregar Tarea"
+                        value={
+                            tareaselecionada 
+                                ?"Editar Tarea" 
+                                :"Agregar Tarea"
+                        }
                         />
                 </div>
             </form>

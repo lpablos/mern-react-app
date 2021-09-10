@@ -9,6 +9,7 @@ const Listado = () => {
 
     useEffect(() => {        
         obtenerProyectos()
+        // eslint-disable-next-line  
     }, [])
 
     // Verificacion en caso existir listado

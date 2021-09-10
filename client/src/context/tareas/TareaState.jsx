@@ -8,6 +8,9 @@ import {
     VALIDAR_TAREA,
     ELIMINAR_TAREA,
     ESTADO_TAREA,
+    TAREA_ACTUAL,
+    ACTUALIZAR_TAREA,
+    LIMPIAR_TAREA
 } from "../../types"
 
 const TareaState = props =>{
@@ -77,7 +80,8 @@ const TareaState = props =>{
             },
         ],
         tareasproyecto: null,
-        errorTarea: false
+        errorTarea: false,
+        tareaselecionada: null
     }
 
     const [state, dispatch] = useReducer(TareaReduce, initialState)
@@ -126,6 +130,29 @@ const TareaState = props =>{
         })
     }
 
+    // Estrae una tarea para edicion
+    const tareaActual = tarea =>{
+        dispatch({
+            type: TAREA_ACTUAL,
+            payload: tarea
+        })
+    }
+
+    // Editar o ctualizar tare
+
+    const actualizarTarea = tarea =>{
+        dispatch({
+            type: ACTUALIZAR_TAREA,
+            payload: tarea
+        })
+    }
+    // Eliminar la tarea selecionada
+    const limpiarTarea = tarea =>{
+        dispatch({
+            type: LIMPIAR_TAREA
+        })
+    }
+
 
 
     return (
@@ -134,11 +161,15 @@ const TareaState = props =>{
                 tareas: state.tareas,
                 tareasproyecto: state.tareasproyecto,
                 errorTarea : state.errorTarea,
+                tareaselecionada:state.tareaselecionada,
                 obtenerTareas,
                 agregarTarea,
                 validaTarea,
                 eliminarTarea,
-                cambiarEstadoTarea
+                cambiarEstadoTarea,
+                tareaActual,
+                actualizarTarea,
+                limpiarTarea
             }}
         >
             {props.children}
