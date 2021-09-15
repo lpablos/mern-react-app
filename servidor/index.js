@@ -15,7 +15,7 @@ const PORT = process.env.PORT || 4000;
 // importar rutas
 app.use('/api/usuarios',require('./routes/usuarios'))
 
-
+// Levantamiento del servicio
 app.listen(PORT, ()=>{
     console.log(`El servidor corriendo en el puerto ${PORT}`);
 })
