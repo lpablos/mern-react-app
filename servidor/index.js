@@ -17,6 +17,8 @@ const PORT = process.env.PORT || 4000;
 app.use('/api/usuarios',require('./routes/usuarios'))
 // Login del usuario
 app.use('/api/auth',require('./routes/auth'))
+// Proyectos del proyectos
+app.use('/api/proyectos',require('./routes/proyectos'))
 
 // Levantamiento del servicio
 app.listen(PORT, ()=>{
