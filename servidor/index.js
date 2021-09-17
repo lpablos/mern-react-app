@@ -13,7 +13,10 @@ app.use( express.json({ extended: true }) )
 const PORT = process.env.PORT || 4000;
 
 // importar rutas
+// Registro de usuario
 app.use('/api/usuarios',require('./routes/usuarios'))
+// Login del usuario
+app.use('/api/auth',require('./routes/auth'))
 
 // Levantamiento del servicio
 app.listen(PORT, ()=>{

@@ -2,6 +2,7 @@ const { findOne } = require('../models/Usuario');
 const Usuario = require('../models/Usuario')
 const bcryptjs = require('bcryptjs')
 const { validationResult } = require('express-validator')
+const jwt = require('jsonwebtoken')
 
 exports.crearUsuarios = async (req, res) =>{
     // Revisar si hay errores
@@ -25,7 +26,18 @@ exports.crearUsuarios = async (req, res) =>{
         usuario.password = await bcryptjs.hash(password, salt)
         // Guardar el usuario
         await usuario.save()
-        return res.status(200).json({msj:'Usuario creado correctamente'})
+        // Crear y firmar JWT
+        const payload = {
+            usuario: {
+                id: usuario.id
+            }
+        }
+        // Firmar JWT
+        jwt.sign(payload, process.env.SECRETA,{expiresIn: 3600},(error, token)=>{
+            if(error) throw error
+            // Si todo sale bien regresa un token
+            res.json({token})
+        })
         
     } catch (error) {
         // En caso de existir un error
