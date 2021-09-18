@@ -9,9 +9,27 @@ const auth = require('../middleware/auth')
 router.post('/',
             auth, 
             [
-                check('nombre', 'nombre del proyecto es obligatorio').not().isEmpty()
+                check('nombre', 'Nombre de proyecto obligatorio').not().isEmpty()
             ],
             proyectoController.crearProyectos)
+
+// Obtiene todos los proyectos del usuario actual
+router.get('/',
+            auth,   
+            proyectoController.obtenerProyectos)
+
+// Actualizar 
+router.put('/:id',
+            auth,
+            [
+                check('nombre', 'Nombre de proyecto obligatorio').not().isEmpty()
+            ],   
+            proyectoController.actualizarProyecto)
+            
+//  Eliminar proyecto
+router.delete('/:id',
+            auth,              
+            proyectoController.eliminarProyecto)
 
 
 module.exports = router 
