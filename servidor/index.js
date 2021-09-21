@@ -15,10 +15,12 @@ const PORT = process.env.PORT || 4000;
 // importar rutas
 // Registro de usuario
 app.use('/api/usuarios',require('./routes/usuarios'))
-// Login del usuario
+// Login de usuario
 app.use('/api/auth',require('./routes/auth'))
-// Proyectos del proyectos
+// Proyectos de proyectos
 app.use('/api/proyectos',require('./routes/proyectos'))
+// tareas de tarea
+app.use('/api/tareas',require('./routes/tareas'))
 
 // Levantamiento del servicio
 app.listen(PORT, ()=>{
