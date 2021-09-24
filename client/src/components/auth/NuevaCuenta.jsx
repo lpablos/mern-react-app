@@ -1,7 +1,12 @@
-import React , {useState} from 'react'
+import React , {useState, useContext} from 'react'
 import { Link } from 'react-router-dom'
+import AlertaContext from '../../context/alertas/AlertaContext'
 
 const NuevaCuenta = () => {
+
+    const alertaContext = useContext(AlertaContext)
+    const { alerta, mostrarAlertas } = alertaContext
+
     const [usuario, setUsuario] = useState({
         nombre:'',
         email:'',
@@ -19,12 +24,47 @@ const NuevaCuenta = () => {
 
     const onSubmit = e =>{
         e.preventDefault()
-        alert("Hola nueva cuenta")
+        console.log('Esto es', 
+            nombre.trim() === '' ||
+            email.trim() === '' ||
+            password.trim() === '' ||
+            confirmar.trim() === ''            
+        )
+        // Validar que no haya campos vacios
+        if(
+            nombre.trim() === '' ||
+            email.trim() === '' ||
+            password.trim() === '' ||
+            confirmar.trim() === ''            
+        ){
+            mostrarAlertas('Todos los campos son obligatorios','alerta-error')
+            return
+        }
+        // Password minimo de 6 caracteres
+        if(password.trim().length() < 6){
+            mostrarAlertas('La contraseña tiene que ser mayor a 6 caracteres','alerta-error')
+            return
+        }
+        if(password.trim() !== confirmar.trim()){
+            mostrarAlertas('Las contraseñas no son iguales','alerta-error')
+            return
+        }
+        // Los 2 password son iguales
+        // Pasarlo al action
     }
     return (
         <div className="form-usuario">
+            
+           
             <div className="contenedor-form sombra-dark">
                 <h1>Nueva Cuenta</h1>
+                <p>
+                    {
+                        alerta
+                        ? (<div className={`alerta ${alerta.categoria}`}>*{alerta.msg}</div>)
+                        : null 
+                    }
+                </p>
                 <form 
                 
                     onSubmit={onSubmit}
