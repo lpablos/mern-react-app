@@ -1,11 +1,15 @@
 import React , {useState, useContext} from 'react'
 import { Link } from 'react-router-dom'
 import AlertaContext from '../../context/alertas/AlertaContext'
+import AuthContext from '../../context/autenticacion/AuthContext'
 
 const NuevaCuenta = () => {
 
     const alertaContext = useContext(AlertaContext)
     const { alerta, mostrarAlertas } = alertaContext
+
+    const authContext = useContext(AuthContext)
+    const { registrarUsuario } = authContext
 
     const [usuario, setUsuario] = useState({
         nombre:'',
@@ -41,17 +45,23 @@ const NuevaCuenta = () => {
             return
         }
         // Password minimo de 6 caracteres
-        if(password.trim().length() < 6){
+        if(password.trim().length < 6){
             mostrarAlertas('La contraseña tiene que ser mayor a 6 caracteres','alerta-error')
             return
         }
+        // Los 2 password son iguales
         if(password.trim() !== confirmar.trim()){
             mostrarAlertas('Las contraseñas no son iguales','alerta-error')
             return
         }
-        // Los 2 password son iguales
-        // Pasarlo al action
+        // Pasarlo al action en forma de objecto
+        registrarUsuario({
+            nombre,
+            email,
+            password
+        })
     }
+
     return (
         <div className="form-usuario">
             
