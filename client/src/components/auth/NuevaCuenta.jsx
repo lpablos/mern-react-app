@@ -9,7 +9,7 @@ const NuevaCuenta = () => {
     const { alerta, mostrarAlertas } = alertaContext
 
     const authContext = useContext(AuthContext)
-    const { registrarUsuario } = authContext
+    const {registrarUsuario} = authContext
 
     const [usuario, setUsuario] = useState({
         nombre:'',
@@ -49,19 +49,18 @@ const NuevaCuenta = () => {
             mostrarAlertas('La contraseña tiene que ser mayor a 6 caracteres','alerta-error')
             return
         }
-        // Los 2 password son iguales
         if(password.trim() !== confirmar.trim()){
             mostrarAlertas('Las contraseñas no son iguales','alerta-error')
             return
         }
-        // Pasarlo al action en forma de objecto
+        // Los 2 password son iguales
+        // Pasarlo al action
         registrarUsuario({
             nombre,
             email,
             password
         })
     }
-
     return (
         <div className="form-usuario">
             
