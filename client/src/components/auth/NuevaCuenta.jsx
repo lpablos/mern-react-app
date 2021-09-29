@@ -1,15 +1,30 @@
-import React , {useState, useContext} from 'react'
+import React , {useState, useContext, useEffect} from 'react'
 import { Link } from 'react-router-dom'
 import AlertaContext from '../../context/alertas/AlertaContext'
 import AuthContext from '../../context/autenticacion/AuthContext'
 
-const NuevaCuenta = () => {
+const NuevaCuenta = (props) => {
 
     const alertaContext = useContext(AlertaContext)
     const { alerta, mostrarAlertas } = alertaContext
 
     const authContext = useContext(AuthContext)
-    const {registrarUsuario} = authContext
+    const {mensaje, autenticado, registrarUsuario} = authContext
+
+    // En caso de que el usuario se haya autenticado, registrado o sea duplicado
+    
+    useEffect(() => {
+        // Cuando ya fue atenticado
+        if(autenticado){
+            this.props.history.push('/proyectos')
+        }
+        // 
+        if(mensaje){
+            mostrarAlertas(mensaje.msg, mensaje.categoria)
+        }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [mensaje, autenticado])
 
     const [usuario, setUsuario] = useState({
         nombre:'',
