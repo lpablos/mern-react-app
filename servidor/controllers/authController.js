@@ -19,7 +19,7 @@ exports.autenticarUsuario = async (req, res) =>{
         // revisar su contraseña
         const passCorrecto = await bcryptjs.compare(password, usuario.password)
         if(!passCorrecto){
-            return res.status(400).json({ mgs: 'Contraseña incorrecta'})
+            return res.status(400).json({ msg: 'Contraseña incorrecta'})
         }
         // Si todo es correccto JWt
         const payload = {
@@ -37,6 +37,21 @@ exports.autenticarUsuario = async (req, res) =>{
         
     } catch (error) {
         console.log('Este es el error', error)        
+    }
+}
+
+// Obtiene que usuario esta autenticado
+exports.usuarioAutenticado = async (req, res) =>{
+    try {
+        const usuario = await Usuario.findById(req.usuario.id).select('-password')
+        res.status(200).json({
+            usuario
+        })
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            msg: 'Existe un error'
+        })
     }
 }
 

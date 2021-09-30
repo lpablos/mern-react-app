@@ -1,9 +1,9 @@
 import {
     REGISTRO_EXITOSO,
     REGISTRO_ERROR,
-    // OBTENER_USUARIO,
+    OBTENER_USUARIO,
     // LOGIN_EXITOSO,
-    // LOGIN_ERROR,
+    LOGIN_ERROR,
     // CERRAR_SESSION,
 } from '../../types'
 
@@ -17,15 +17,21 @@ export default (state, action) => {
                 mensaje: null
             }
             break;
+        case LOGIN_ERROR:
         case REGISTRO_ERROR:
+            localStorage.removeItem('token')
             return{
                 ...state,
                 token: null,
                 mensaje : action.payload
             }
             break;
-        // case OBTENER_USUARIO:
-        //     break;
+        case OBTENER_USUARIO:
+            return{
+                ...state,
+                usuario: action.payload
+            }
+            break;
         // case LOGIN_EXITOSO:
         //     break;
         // case LOGIN_ERROR:
