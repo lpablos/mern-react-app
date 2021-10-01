@@ -46,12 +46,14 @@ const AuthState = props =>{
 
     // Retorna usuario autenticado
     const usuarioAutenticado = async () => { 
+        // 1.- Obtenemos por storage 
         const token = localStorage.getItem('token')   
         if(token) {
-            //Difine las cabeceras con la configuracion
+            // 2.- Llamada a la configuracion de headers para que axios lo asocie
             tokenAuth(token)
         }
         try {
+            // 3.- Hace la peticion con los headers ya configurados 
             const respuesta = await clienteAxios.get('/api/auth')
             // console.log('Este es el usuario', respuesta);   
             dispatch({
@@ -59,9 +61,28 @@ const AuthState = props =>{
                 payload: respuesta.data.usuario
             })       
         } catch (error) {
-            console.log(error);
+            // console.log(error.response);
             dispatch({
-                type: LOGIN_ERROR
+                type: LOGIN_ERROR,
+                payload: error.response
+            })
+        }
+
+    }
+
+    // Cuando el usuario inica sessions
+    const iniciarSesion = async datos => {
+        try {
+            const respuesta = await clienteAxios.post('/api/auth', datos)
+            console.log("Esta es al respuesta", respuesta);
+        } catch (error) {
+            const alerta = {
+                msg: error.response.data.msg,
+                categoria : 'alert-error'
+            }            
+            dispatch({
+                type: LOGIN_ERROR,
+                payload: alerta
             })
         }
 
@@ -75,7 +96,8 @@ const AuthState = props =>{
                 usuario: state.usuario,
                 mensaje: state.mensaje,
                 registrarUsuario,
-                usuarioAutenticado
+                usuarioAutenticado,
+                iniciarSesion
             }}
         >
             {props.children}
