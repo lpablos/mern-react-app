@@ -28,13 +28,14 @@ exports.autenticarUsuario = async (req, res) =>{
             }
         }
         jwt.sign(payload, process.env.SECRETA,{
-            expiresIn: 3600
-        }, (error, token)=>{
-            if(error) throw error;
+                expiresIn: 3600
+            }, (error, token)=>{
+                if(error) throw error;
+                res.status(200).json({
+                    token
+                })
+            })
 
-            res.json({token})
-        })
-        
     } catch (error) {
         console.log('Este es el error', error)        
     }

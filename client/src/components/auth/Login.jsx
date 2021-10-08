@@ -1,5 +1,5 @@
-import React , {useState, useContext}from 'react'
-import { Link } from 'react-router-dom'
+import React , {useState, useContext, useEffect }from 'react'
+import { Link, useHistory } from 'react-router-dom'
 import AuthContext from '../../context/autenticacion/AuthContext'
 import AlertaContext from '../../context/alertas/AlertaContext'
 
@@ -9,8 +9,21 @@ const Login = () => {
 
     const authContext = useContext(AuthContext)
     const {mensaje, autenticado, iniciarSesion} = authContext
+    let history = useHistory();
+    
+    useEffect(() => {
+        // Cuando ya fue atenticado
+        if(autenticado){
+            history.push('/proyectos')
+        }
+        
+        if(mensaje){
+            mostrarAlertas(mensaje.msg, mensaje.categoria)
+        }
 
-
+    
+    }, [ autenticado , mensaje , history])
+    
     const [usuario, setUsuario] = useState({
         email:'',
         password:''

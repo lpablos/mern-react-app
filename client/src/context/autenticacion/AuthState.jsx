@@ -8,7 +8,7 @@ import {
     REGISTRO_EXITOSO,
     REGISTRO_ERROR,
     OBTENER_USUARIO,
-//     LOGIN_EXITOSO,
+    LOGIN_EXITOSO,
     LOGIN_ERROR,
 //     CERRAR_SESSION,
 } from '../../types'
@@ -25,6 +25,7 @@ const AuthState = props =>{
 
     const registrarUsuario = async datos =>{
         try {
+            // Registrar usuario
             const registrarUsuario = await clienteAxios.post('api/usuarios', datos)
             dispatch({
                 type: REGISTRO_EXITOSO,
@@ -70,12 +71,19 @@ const AuthState = props =>{
 
     }
 
-    // Cuando el usuario inica sessions
+    // Cuando el usuario inica session
     const iniciarSesion = async datos => {
         try {
             const respuesta = await clienteAxios.post('/api/auth', datos)
             console.log("Esta es al respuesta", respuesta);
+            dispatch({
+                type: LOGIN_EXITOSO,
+                payload: respuesta                
+            })
+            // Obtener el usuario una vez teniendo el token
+            usuarioAutenticado()
         } catch (error) {
+            console.log("Error", error.response.data.msg);
             const alerta = {
                 msg: error.response.data.msg,
                 categoria : 'alert-error'

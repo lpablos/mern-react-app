@@ -3,7 +3,7 @@ import { Link, useHistory  } from 'react-router-dom'
 import AlertaContext from '../../context/alertas/AlertaContext'
 import AuthContext from '../../context/autenticacion/AuthContext'
 
-const NuevaCuenta = (props) => {
+const NuevaCuenta = () => {
 
     const alertaContext = useContext(AlertaContext)
     const { alerta, mostrarAlertas } = alertaContext

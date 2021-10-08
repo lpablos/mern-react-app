@@ -2,13 +2,14 @@ import {
     REGISTRO_EXITOSO,
     REGISTRO_ERROR,
     OBTENER_USUARIO,
-    // LOGIN_EXITOSO,
+    LOGIN_EXITOSO,
     LOGIN_ERROR,
     // CERRAR_SESSION,
 } from '../../types'
 
 export default (state, action) => {
     switch (action.type) {
+        case LOGIN_EXITOSO:
         case REGISTRO_EXITOSO:
             localStorage.setItem('token', action.payload.data.token)
             return{

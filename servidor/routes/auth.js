@@ -10,10 +10,10 @@ const auth = require('../middleware/auth')
 // Iniciar session
 router.post(
     '/',
-    [
-        check('email','Agregar un correo valido').isEmail(),
-        check('password','La contraseña debe ser minimo 6 caracteres').isLength({ min : 6})
-    ],
+    // [
+    //     check('email','Agregar un correo valido').isEmail(),
+    //     check('password','La contraseña debe ser minimo 6 caracteres').isLength({ min : 6})
+    // ],
     authController.autenticarUsuario
     )
 
