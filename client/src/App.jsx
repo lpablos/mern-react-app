@@ -3,6 +3,7 @@ import Login from './components/auth/Login';
 import NuevaCuenta from './components/auth/NuevaCuenta';
 import Proyectos from './components/proyectos/Proyectos';
 
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -15,6 +16,11 @@ import TareaState from './context/tareas/TareaState';
 import AlertaState from './context/alertas/AlertaState';
 import AuthState from './context/autenticacion/AuthState';
 
+// High Order Component check if user is login roght now
+import RutaPrivada from './components/rutas/RutaPrivada';
+
+
+
 
 
 const App = () => {
@@ -26,15 +32,10 @@ const App = () => {
             <AuthState>
               <Router>    
                 <Switch>
-                    <Route exact path="/">
-                      <Login />
-                    </Route>
-                    <Route exact path="/nueva-cuenta">
-                      <NuevaCuenta />
-                    </Route>
-                    <Route exact path="/proyectos">
-                      <Proyectos />
-                    </Route>
+                    <Route exact path="/" component={Login}/>
+                    <Route exact path="/nueva-cuenta" component={NuevaCuenta} />                      
+                    <RutaPrivada exact path="/proyectos" component={Proyectos} />
+                   
                   </Switch>
               </Router> 
             </AuthState>

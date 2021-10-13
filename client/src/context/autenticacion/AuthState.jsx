@@ -10,7 +10,7 @@ import {
     OBTENER_USUARIO,
     LOGIN_EXITOSO,
     LOGIN_ERROR,
-//     CERRAR_SESSION,
+    // CERRAR_SESSION,
 } from '../../types'
 
 const AuthState = props =>{
@@ -18,7 +18,8 @@ const AuthState = props =>{
         token: localStorage.getItem('token'),
         autenticado: null,
         usuario: null,
-        mensaje: null 
+        mensaje: null,
+        cargando: true,
     }
     const [state, dispatch] = useReducer(AuthReduce, initialState)
     // Funciones
@@ -96,6 +97,7 @@ const AuthState = props =>{
 
     }
 
+
     return (
         <AuthContext.Provider
             value={{
@@ -103,6 +105,7 @@ const AuthState = props =>{
                 autenticado : state.autenticado,
                 usuario: state.usuario,
                 mensaje: state.mensaje,
+                cargando : state.cargando,
                 registrarUsuario,
                 usuarioAutenticado,
                 iniciarSesion
