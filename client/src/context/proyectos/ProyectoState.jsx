@@ -27,7 +27,8 @@ const ProyectoState = props => {
         formulario : false,
         proyectos : [],
         errorformulario: false,
-        proyecto: null
+        proyecto: null, 
+        mensaje: null
     }
 
     // dispache para ejecutaras las acciones
@@ -111,6 +112,7 @@ const ProyectoState = props => {
                 formulario : state.formulario,
                 errorformulario : state.errorformulario,
                 proyecto: state.proyecto,
+                mensaje: state.mensaje,
                 mostrarFormulario,
                 obtenerProyectos,
                 agregarProyecto,
