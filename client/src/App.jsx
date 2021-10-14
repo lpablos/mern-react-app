@@ -14,8 +14,12 @@ import ProyectoState from './context/proyectos/ProyectoState';
 import TareaState from './context/tareas/TareaState';
 import AlertaState from './context/alertas/AlertaState';
 import AuthState from './context/autenticacion/AuthState';
+import tokenAuth from './config/token';
 
-
+const token = localStorage.getItem('token')
+if(token){
+  tokenAuth(token)
+}
 
 const App = () => {
   console.log(`Documento .env ${process.env.REACT_APP_BACKEND_URL}`);
