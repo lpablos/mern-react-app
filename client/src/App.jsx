@@ -2,6 +2,7 @@ import React from 'react'
 import Login from './components/auth/Login';
 import NuevaCuenta from './components/auth/NuevaCuenta';
 import Proyectos from './components/proyectos/Proyectos';
+import RutaPrivada from './components/rutas/RutaPrivada';
 
 import {
   BrowserRouter as Router,
@@ -20,9 +21,16 @@ const token = localStorage.getItem('token')
 if(token){
   tokenAuth(token)
 }
+// High Order Component check if user is login roght now
+// import RutaPrivada from './components/rutas/RutaPrivada';
+
+
+
+
+
 
 const App = () => {
-  console.log(`Documento .env ${process.env.REACT_APP_BACKEND_URL}`);
+  
   return (
       <ProyectoState>
         <TareaState>
@@ -30,15 +38,10 @@ const App = () => {
             <AuthState>
               <Router>    
                 <Switch>
-                    <Route exact path="/">
-                      <Login />
-                    </Route>
-                    <Route exact path="/nueva-cuenta">
-                      <NuevaCuenta />
-                    </Route>
-                    <Route exact path="/proyectos">
-                      <Proyectos />
-                    </Route>
+                    <Route exact path="/" component={Login}/>
+                    <Route exact path="/nueva-cuenta" component={NuevaCuenta} />                      
+                    <RutaPrivada exact path="/proyectos" component={Proyectos} />
+                   
                   </Switch>
               </Router> 
             </AuthState>

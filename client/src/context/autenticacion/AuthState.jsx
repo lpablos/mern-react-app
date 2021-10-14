@@ -18,7 +18,8 @@ const AuthState = props =>{
         token: localStorage.getItem('token'),
         autenticado: null,
         usuario: null,
-        mensaje: null 
+        mensaje: null,
+        cargando: true,
     }
     const [state, dispatch] = useReducer(AuthReduce, initialState)
     // Funciones
@@ -82,7 +83,7 @@ const AuthState = props =>{
             })
             // Obtener el usuario una vez teniendo el token
             usuarioAutenticado()
-        } catch (error) {
+        } catch (error) {            
             console.log("Error", error.response.data.msg);
             const alerta = {
                 msg: error.response.data.msg,
@@ -109,6 +110,7 @@ const AuthState = props =>{
                 autenticado : state.autenticado,
                 usuario: state.usuario,
                 mensaje: state.mensaje,
+                cargando : state.cargando,
                 registrarUsuario,
                 usuarioAutenticado,
                 iniciarSesion,

@@ -15,7 +15,8 @@ exports.crearProyectos = async(req, res)=>{
         proyecto.creador = req.usuario.id
         // Guardamos el proyecto
         proyecto.save()
-        return res.status(200).json({msg: 'Proyecto agreago correctamente'})   
+        // return res.status(200).json({msg: 'Proyecto agreago correctamente'}) 
+        res.status(200).json(proyecto);  
     } catch (error) {
         console.log(error);
         res.status(400).send('Error al intentar guardar un proyecto')
@@ -23,11 +24,13 @@ exports.crearProyectos = async(req, res)=>{
 }
 
 exports.obtenerProyectos = async (req, res)=>{
+    
     try {
         const proyectos = await Proyecto
                             .find({ creador: req.usuario.id})
                             .sort({creado: -1 })
         res.status(200).json({proyectos})
+       
     } catch (error) {
         console.log(error);
         res.status(500).send('Error al obtener el listado de proyectos')

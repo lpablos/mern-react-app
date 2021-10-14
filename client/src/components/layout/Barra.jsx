@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from 'react'
 import AuthContext from '../../context/autenticacion/AuthContext'
 
+
 const Barra = () => {
     const authContext = useContext(AuthContext)
     const { usuario, usuarioAutenticado, cerrarSesion} = authContext

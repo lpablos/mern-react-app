@@ -1,7 +1,7 @@
 import React,{useReducer} from "react"
 import ProyectoContext from "./ProyectoContext"
 import ProyectoReduce from "./ProyectoReduce"
-import { v4 as uuidv4 } from 'uuid';
+// import { v4 as uuidv4 } from 'uuid';
 import { 
     FORMULARIO_PROYECTO, 
     OBTENER_PROYECTOS,
@@ -11,15 +11,17 @@ import {
     ELIMINAR_PROYECTO
 } from "../../types"
 
+import clienteAxios from '../../config/axios'
+
 
 const ProyectoState = props => {
 
     
-    const proyectos = [
-        { id: 1, nombre: 'tienda virtual'},
-        { id: 2, nombre: 'intranet'},
-        { id: 3, nombre: 'Diseño X'}
-    ] 
+    // const proyectos = [
+    //     { id: 1, nombre: 'tienda virtual'},
+    //     { id: 2, nombre: 'intranet'},
+    //     { id: 3, nombre: 'Diseño X'}
+    // ] 
     // variables globales
     const initialState = {
         formulario : false,
@@ -38,21 +40,43 @@ const ProyectoState = props => {
     }
 
     // Obtener los proyectos
-    const obtenerProyectos = () =>{        
+    const obtenerProyectos = async () =>{        
+        // dispatch({
+        //     type: OBTENER_PROYECTOS,
+        //     payload : proyectos
+        // })
+        // alert("Obten proyectos")
+        
+        const resultados = await clienteAxios.get('/api/proyectos')
+        
         dispatch({
             type: OBTENER_PROYECTOS,
-            payload : proyectos
+            payload: resultados.data.proyectos
         })
+        try {
+            
+        } catch (error) {
+            console.log("Este es el error", error);
+        }
     }
 
     // agregar proyecto
 
-    const agregarProyecto = proyecto =>{
-        proyecto.id = uuidv4() 
-        dispatch({
-            type: AGREGAR_PROYECTO,
-            payload : proyecto
-        })
+    const agregarProyecto = async proyecto =>{
+        // proyecto.id = uuidv4() 
+        // dispatch({
+        //     type: AGREGAR_PROYECTO,
+        //     payload : proyecto
+        // })
+        try {
+            const resultado = await clienteAxios.post('/api/proyectos', proyecto)            
+            dispatch({
+                type: AGREGAR_PROYECTO,
+                payload : resultado.data
+            })
+        } catch (error) {
+            
+        }
     }
 
     // Valida el formulario por errores
