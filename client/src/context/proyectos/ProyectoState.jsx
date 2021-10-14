@@ -8,7 +8,8 @@ import {
     AGREGAR_PROYECTO,
     VALIDAR_FORMULARIO,
     PROYECTO_ACTUAL,
-    ELIMINAR_PROYECTO
+    ELIMINAR_PROYECTO, 
+    PROYECTO_ERROR
 } from "../../types"
 
 import clienteAxios from '../../config/axios'
@@ -88,7 +89,8 @@ const ProyectoState = props => {
     }
 
     // seleccionar el proyecto al hacer click
-    const proyectoACtual = proyectoId =>{        
+    const proyectoACtual = proyectoId =>{   
+         
         dispatch({
             type: PROYECTO_ACTUAL,
             payload: proyectoId
@@ -96,11 +98,26 @@ const ProyectoState = props => {
 
     }
 
-    const eliminarProyecto = proyectoId =>{
-        dispatch({
-            type: ELIMINAR_PROYECTO,
-            payload: proyectoId
-        })
+    const eliminarProyecto = async proyectoId =>{   
+         
+        try {
+            await clienteAxios.delete(`/api/proyectos/${proyectoId}`)
+            dispatch({
+                type: ELIMINAR_PROYECTO,
+                payload: proyectoId
+            })  
+        } catch (error) {
+            
+            const alerta = {
+                msg: 'Hubo un error',
+                categoria: 'alerta-error'
+            }
+            
+            dispatch({
+                type: PROYECTO_ERROR,
+                payload: alerta
+            })
+        }
     }
 
     // Eliminar un proyecto

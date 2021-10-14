@@ -63,6 +63,7 @@ const NuevoProyecto = () => {
                             className="input-text"
                             placeholder="Nombre del Proyecto"
                             onChange={onChangeProyecto}
+                            autocomplete="off"
                             value={nombre}/>
                         <input 
                             type="submit" 

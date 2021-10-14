@@ -4,6 +4,7 @@ import TareaContext from '../../context/tareas/TareaContext'
 
 
 const Proyecto = ({proyecto}) => {
+        
     const proyectosContext = useContext(ProyectoContext)
     const {proyectoACtual} = proyectosContext
 
@@ -12,6 +13,7 @@ const Proyecto = ({proyecto}) => {
 
     // funcion para fijar un proyecto actual
     const selecionarProyecto = id =>{
+        
         proyectoACtual(id) // Fijar un proyecto actual
         obtenerTareas(id)
     }
@@ -20,7 +22,7 @@ const Proyecto = ({proyecto}) => {
             <button
                 type="button"
                 className="btn btn-blank"
-                onClick={()=>selecionarProyecto(proyecto.id)}
+                onClick={()=>selecionarProyecto(proyecto._id)}
             >
                 {proyecto.nombre}
             </button>

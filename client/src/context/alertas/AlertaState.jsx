@@ -14,8 +14,7 @@ const AlertaState = props =>{
 
     // Funciones
     // Mostrar alertas
-    const mostrarAlertas = (msg, categoria)=>{
-        console.log('Entro en la funcion State');
+    const mostrarAlertas = (msg, categoria)=>{        
         dispatch({
             type: MOSTRAR_ALERTA,
             payload : {
