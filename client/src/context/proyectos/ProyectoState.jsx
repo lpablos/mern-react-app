@@ -58,7 +58,15 @@ const ProyectoState = props => {
         try {
             
         } catch (error) {
-            console.log("Este es el error", error);
+            const alerta = {
+                msg: 'Hubo un error',
+                categoria: 'alerta-error'
+            }
+            
+            dispatch({
+                type: PROYECTO_ERROR,
+                payload: alerta
+            })
         }
     }
 
@@ -77,6 +85,15 @@ const ProyectoState = props => {
                 payload : resultado.data
             })
         } catch (error) {
+            const alerta = {
+                msg: 'Hubo un error',
+                categoria: 'alerta-error'
+            }
+            
+            dispatch({
+                type: PROYECTO_ERROR,
+                payload: alerta
+            })
             
         }
     }

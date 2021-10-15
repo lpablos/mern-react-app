@@ -17,68 +17,69 @@ const TareaState = props =>{
     
    
     const initialState = {
-        tareas : [
-            {
-                id:1,
-                nombre: 'Elegir Plataforma',
-                estado: true,
-                proyectoId: 1
-            },
-            {
-                id:2,
-                nombre: 'Elegir Colores',
-                estado: false,
-                proyectoId: 2
-            },
-            {
-                id:3,
-                nombre: 'Elegir Plataformas de Pago',
-                estado: true,
-                proyectoId: 3
-            },
-            {
-                id:4,
-                nombre: 'Elegir Hosting',
-                estado: false,
-                proyectoId: 4
-            },
-            {
-                id:5,
-                nombre: 'Elegir Colores',
-                estado: false,
-                proyectoId: 2
-            },
-            {
-                id:6,
-                nombre: 'Elegir Plataformas de Pago',
-                estado: true,
-                proyectoId: 2
-            },
-            {
-                id:7,
-                nombre: 'Elegir Hosting',
-                estado: false,
-                proyectoId: 1
-            },
-            {
-                id:8,
-                nombre: 'Elegir Colores',
-                estado: false,
-                proyectoId: 2
-            },
-            {
-                id:9,
-                nombre: 'Elegir Plataformas de Pago',
-                estado: true,
-                proyectoId: 3
-            },
-            {
-                id:10,
-                nombre: 'Elegir Hosting',
-                estado: false,
-                proyectoId: 4
-            },
-        ],
+        // tareas : [
+        //     {
+        //         id:1,
+        //         nombre: 'Elegir Plataforma',
+        //         estado: true,
+        //         proyectoId: 1
+        //     },
+        //     {
+        //         id:2,
+        //         nombre: 'Elegir Colores',
+        //         estado: false,
+        //         proyectoId: 2
+        //     },
+        //     {
+        //         id:3,
+        //         nombre: 'Elegir Plataformas de Pago',
+        //         estado: true,
+        //         proyectoId: 3
+        //     },
+        //     {
+        //         id:4,
+        //         nombre: 'Elegir Hosting',
+        //         estado: false,
+        //         proyectoId: 4
+        //     },
+        //     {
+        //         id:5,
+        //         nombre: 'Elegir Colores',
+        //         estado: false,
+        //         proyectoId: 2
+        //     },
+        //     {
+        //         id:6,
+        //         nombre: 'Elegir Plataformas de Pago',
+        //         estado: true,
+        //         proyectoId: 2
+        //     },
+        //     {
+        //         id:7,
+        //         nombre: 'Elegir Hosting',
+        //         estado: false,
+        //         proyectoId: 1
+        //     },
+        //     {
+        //         id:8,
+        //         nombre: 'Elegir Colores',
+        //         estado: false,
+        //         proyectoId: 2
+        //     },
+        //     {
+        //         id:9,
+        //         nombre: 'Elegir Plataformas de Pago',
+        //         estado: true,
+        //         proyectoId: 3
+        //     },
+        //     {
+        //         id:10,
+        //         nombre: 'Elegir Hosting',
+        //         estado: false,
+        //         proyectoId: 4
+        //     },
+        // ],
+        tareas : [],
         tareasproyecto: null,
         errorTarea: false,
         tareaselecionada: null
