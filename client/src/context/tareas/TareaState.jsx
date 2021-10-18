@@ -1,7 +1,10 @@
 import React, {useReducer} from 'react'
 import TareaContext from './TareaContext'
 import TareaReduce from './TareaReduce'
-import { v4 as uuidv4 } from 'uuid';
+import clienteAxios from '../../config/axios'
+
+// import { v4 as uuidv4 } from 'uuid';
+
 import { 
     TAREAS_PROYECTO,
     AGREGAR_TAREA,
@@ -79,8 +82,8 @@ const TareaState = props =>{
         //         proyectoId: 4
         //     },
         // ],
-        tareas : [],
-        tareasproyecto: null,
+        tareasproyecto : [],
+        tareas : [],        
         errorTarea: false,
         tareaselecionada: null
     }
@@ -99,12 +102,16 @@ const TareaState = props =>{
         })
     }
     // Agrega un tarea
-    const agregarTarea = tarea =>{
-        tarea.id = uuidv4() 
-        dispatch({
-            type : AGREGAR_TAREA,
-            payload : tarea
-        })
+    const agregarTarea = async tarea =>{
+        try {
+            const resultado = await clienteAxios.post('/api/tareas', tarea)            
+            dispatch({
+                type : AGREGAR_TAREA,
+                payload : resultado.data.tarea
+            })            
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     // Valida y muestra error

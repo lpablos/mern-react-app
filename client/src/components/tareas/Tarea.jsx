@@ -3,6 +3,7 @@ import TareaContext from '../../context/tareas/TareaContext'
 import ProyectoContext from '../../context/proyectos/ProyectoContext'
 
 const Tarea = ({tarea}) => {
+    
     const tareasContext = useContext(TareaContext)
     const { 
         eliminarTarea, 
@@ -18,7 +19,7 @@ const Tarea = ({tarea}) => {
     // Funcion para eliminar una tareas
     const tareaEliminar = id =>{
         eliminarTarea(id)
-        obtenerTareas(proyectoActual.id)
+        obtenerTareas(proyectoActual._id)
     }
 
     const cambiarEstado = tarea =>{
@@ -65,7 +66,7 @@ const Tarea = ({tarea}) => {
                 </button>
                 <button 
                     className="btn btn-secundario"
-                    onClick={()=>tareaEliminar(tarea.id)}>
+                    onClick={()=>tareaEliminar(tarea._id)}>
                         Eliminar
                 </button>
             </div>
