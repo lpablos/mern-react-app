@@ -67,7 +67,7 @@ const FormTareas = () => {
         // Actualizar el listado de las tareas del proyecto actual
         // Nota: es posible por que el evento depende del state 
         // aun que no se parte del mismo componente
-        obtenerTareas(proyectoActual.id)
+        obtenerTareas(proyectoActual._id)
         // Reiniciar el form
         setTarea({nombre: ''})
     }

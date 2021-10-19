@@ -14,7 +14,7 @@ router.post('/',
 
 // Obtener las tareas por proyecto
 
-router.get('/proyecto/:idProyecto',
+router.get('/',
         auth,
         tareaController.obtenerTareas)
 

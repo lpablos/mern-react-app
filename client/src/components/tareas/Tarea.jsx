@@ -8,7 +8,7 @@ const Tarea = ({tarea}) => {
     const { 
         eliminarTarea, 
         obtenerTareas, 
-        cambiarEstadoTarea,
+        actualizarTarea,
         tareaActual
     } = tareasContext
 
@@ -18,13 +18,13 @@ const Tarea = ({tarea}) => {
 
     // Funcion para eliminar una tareas
     const tareaEliminar = id =>{
-        eliminarTarea(id)
+        eliminarTarea(id, proyectoActual._id)
         obtenerTareas(proyectoActual._id)
     }
 
-    const cambiarEstado = tarea =>{
+    const cambiarEstado = tarea =>{        
         tarea.estado = (tarea.estado)? false : true 
-        cambiarEstadoTarea(tarea)
+        actualizarTarea(tarea)
     }
 
     const selecionarTarea = tarea =>{
