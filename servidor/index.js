@@ -1,7 +1,6 @@
 const express = require('express')
 const conectarDB = require('./config/db')
 const cors = require('cors')
-const cors = require("cors")
 
 // Crear el servidor
 const app = express()
@@ -11,8 +10,12 @@ conectarDB()
 // Habilitar cors
 app.use(cors({
     credentials: true,
-    origin: [ 'http://localhost:3000']
+    origin: [ 'http://localhost:3000', 'https://zen-pasteur-b9f10a.netlify.app']
 }))
+// app.use(cors({
+//     credentials: true,
+//     origin: [ 'http://localhost:3000', 'https://zen-pasteur-b9f10a.netlify.app']
+// }))
 
 
 // Habilitar express JSON

@@ -4,18 +4,19 @@ git@github.com:lpablos/mern-react-app.git
 **********************************
 
 *proyecto en heroku server : 
-floating-ridge-49689
+whispering-shore-73763
 *url del servidor
-https://git.heroku.com/floating-ridge-49689.git
+https://whispering-shore-73763.herokuapp.com/ deployed to Heroku
 anexar .env en cliente
-REACT_APP_BACKEND_URL=https://git.heroku.com/floating-ridge-49689.git
+REACT_APP_BACKEND_URL=https://whispering-shore-73763.herokuapp.com/
 
 **********************************
 
 *proyecto en Netlify
-serene-haibt-cd3046
+zen-pasteur-b9f10a
 url del cliente
-https://serene-haibt-cd3046.netlify.app
+https://zen-pasteur-b9f10a.netlify.app
+
 
 
 
