@@ -42,7 +42,7 @@ const App = () => {
                     <Route exact path="/nueva-cuenta" component={NuevaCuenta} />                      
                     <RutaPrivada exact path="/proyectos" component={Proyectos} />
                    
-                  </Switch>
+                </Switch>
               </Router> 
             </AuthState>
           </AlertaState>
